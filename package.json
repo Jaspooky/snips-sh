@@ -1,0 +1,22 @@
+{
+  "name": "snips-sh",
+  "version": "0.0.1",
+  "description": "Wrapper for communicating with https://snips.sh",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaspooky/snips-sh.git"
+  },
+  "keywords": [
+    "snippet"
+  ],
+  "author": "Jaspooky",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/Jaspooky/snips-sh/issues"
+  },
+  "homepage": "https://github.com/Jaspooky/snips-sh#readme"
+}
