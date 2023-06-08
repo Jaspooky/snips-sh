@@ -1,11 +1,12 @@
 {
   "name": "snips-sh",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Wrapper for communicating with https://snips.sh",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "lint": "eslint src test",
-    "format": "prettier --write .",
+    "format": "prettier --write . '!dist/**/*'",
     "test": "jest"
   },
   "repository": {
@@ -37,5 +38,6 @@
   },
   "dependencies": {
     "ssh2": "1.13.0"
-  }
+  },
+  "types": "index.d.ts"
 }
