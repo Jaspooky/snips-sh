@@ -48,7 +48,7 @@ describe("extractUrl", () => {
     expect(result).toBeNull();
   });
 
-  it("extract onlys the first URL in the string", () => {
+  it("extracts only the first URL in the string", () => {
     const str =
       "https://www.example.com is a great website, but so is https://www.anotherexample.com";
     const result = extractUrl(str);
