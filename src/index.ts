@@ -1,4 +1,4 @@
-import crypto, { KeyObject } from "crypto";
+import crypto from "crypto";
 import { Client, ConnectConfig } from "ssh2";
 import { promisify } from "util";
 
@@ -6,6 +6,7 @@ const generateKeyPair = promisify(crypto.generateKeyPair);
 
 /** Regex to match ANSI colour codes. As a TUI, Snips.sh includes these. */
 const ANSI_CODE_PATTERN =
+  // eslint-disable-next-line no-control-regex
   /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g;
 
 /** Removes any ANSI colour codes from the given input. */
@@ -123,7 +124,7 @@ export class Snips {
       throw new Error("Response didn't contain a URL. How bizarre.");
     }
 
-    const id = url.split("/").pop()!;
+    const id = url.split("/").pop() ?? "";
 
     return { id, url };
   }
