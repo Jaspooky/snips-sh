@@ -1,6 +1,6 @@
 {
   "name": "snips-sh",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Wrapper for communicating with https://snips.sh",
   "main": "index.js",
   "scripts": {
