@@ -57,10 +57,17 @@ describe("extractUrl", () => {
 });
 
 describe("Snips", () => {
-  it("uploads a snip", async () => {
-    const { id, url } = await new Snips().upload("Hello!");
+  it("uploads a public snip", async () => {
+    const { id, size, ssh, type, visibility, url } = await new Snips().upload("Hello!");
 
     expect(id).toMatch(/[A-Za-z0-9_-]{10}/);
+    expect(size).toMatchObject({
+      value: 6,
+      unit: "B",
+    });
+    expect(ssh).toBe(`f:${id}@snips.sh`);
+    expect(type).toBe("plaintext");
+    expect(visibility).toBe("public");
     expect(url).toBe(`https://snips.sh/f/${id}`);
   }, 10000);
 
@@ -76,5 +83,28 @@ describe("Snips", () => {
     );
     expect(secondId).toMatch(/[A-Za-z0-9_-]{10}/);
     expect(secondUrl).toBe(`https://snips.sh/f/${secondId}`);
+  }, 10000);
+
+  it("uploads a private snip", async () => {
+    const { id, size, ssh, type, visibility, url } = await new Snips().upload(
+      "Hello!",
+      { isPrivate: true }
+    );
+
+    expect(id).toMatch(/[A-Za-z0-9_-]{10}/);
+    expect(size).toMatchObject({
+      value: 6,
+      unit: "B",
+    });
+    expect(ssh).toBe(`f:${id}@snips.sh`);
+    expect(type).toBe("plaintext");
+    expect(visibility).toBe("private");
+    expect(url).toBe(null);
+  }, 10000);
+
+  it("signs a private snip", async () => {
+    const snip = await new Snips().upload("Hello!", { isPrivate: true });
+
+    const result = await snip.sign();
   }, 10000);
 });
